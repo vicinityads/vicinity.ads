@@ -5,7 +5,7 @@ export const config = {
 export default function middleware(request) {
   const ua = request.headers.get('user-agent') || '';
 
-  const isMobile = /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+  const isMobile = /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
 
   const { pathname } = new URL(request.url);
   const alreadyMobile = pathname.startsWith('/mobile/');
