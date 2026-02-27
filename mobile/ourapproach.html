@@ -4,26 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Approach | Vicinity</title>
-    <script src="https://cdn.tailwindcss.com">
-/* ── Hamburger menu ── */
-const ham = document.getElementById('hamburger');
-const mNav = document.getElementById('mobileNav');
-if (ham && mNav) {
-    ham.addEventListener('click', () => {
-        ham.classList.toggle('open');
-        mNav.classList.toggle('open');
-        document.body.style.overflow = mNav.classList.contains('open') ? 'hidden' : '';
-    });
-    mNav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            ham.classList.remove('open');
-            mNav.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    });
-}
-
-</script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root{--cyan:#00f5ff;--pink:#ff2d78;--blue:#3d6bff;--green:#00e5a0;}
@@ -155,172 +136,123 @@ if (ham && mNav) {
         .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
         .reveal.visible{opacity:1;transform:translateY(0);}
     
-    /* ═══════════════════════════════════════
-       MOBILE / TOUCH OPTIMISATION
-       ═══════════════════════════════════════ */
+    /* ══════════════════════════════════════
+       360 × 740 MOBILE OPTIMISATION
+       ══════════════════════════════════════ */
 
-    /* Hide custom cursor on touch screens */
-    @media (hover: none), (pointer: coarse) {
-        #cursor, #cursor-ring { display: none !important; }
-        * { cursor: auto !important; }
+    /* Hide custom cursor on touch */
+    @media (hover:none),(pointer:coarse){
+        #cursor,#cursor-ring{display:none!important;}
+        *{cursor:auto!important;}
     }
 
-    /* ── Hamburger button ─────────────────── */
-    .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        background: none;
-        border: none;
-        padding: .5rem;
-        z-index: 200;
-        cursor: pointer;
-    }
-    .hamburger span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: rgba(255,255,255,.7);
-        border-radius: 2px;
-        transition: transform .3s, opacity .3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* ── Hamburger ───────────────────────── */
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;
+        padding:.5rem;z-index:300;cursor:pointer;flex-shrink:0;}
+    .hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);
+        border-radius:2px;transition:transform .3s,opacity .3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-    /* ── Mobile nav overlay ───────────────── */
-    .mobile-nav-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 150;
-        background: rgba(3,5,8,.97);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2.5rem;
-        opacity: 0;
-        transition: opacity .3s;
-        pointer-events: none;
-    }
-    .mobile-nav-overlay.open {
-        display: flex;
-        opacity: 1;
-        pointer-events: all;
-    }
-    .mobile-nav-overlay a {
-        font-family: 'Syne', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: rgba(255,255,255,.7);
-        text-decoration: none;
-        letter-spacing: .05em;
-        transition: color .3s;
-    }
-    .mobile-nav-overlay a:hover { color: var(--cyan); }
-    .mobile-nav-overlay .mobile-cta {
-        background: var(--blue);
-        color: white !important;
-        padding: .75rem 2rem;
-        border-radius: 6px;
-        font-size: 1rem !important;
+    /* ── Mobile nav overlay ──────────────── */
+    .mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:200;
+        background:rgba(3,5,8,.97);backdrop-filter:blur(20px);
+        flex-direction:column;align-items:center;justify-content:center;
+        gap:2.5rem;opacity:0;transition:opacity .3s;pointer-events:none;}
+    .mobile-nav-overlay.open{display:flex;opacity:1;pointer-events:all;}
+    .mobile-nav-overlay a{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+        color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.04em;transition:color .3s;}
+    .mobile-nav-overlay a:hover,.mobile-nav-overlay .mo-active{color:var(--cyan);}
+    .mobile-nav-overlay a:last-child{background:var(--blue);color:white!important;
+        padding:.7rem 2rem;border-radius:6px;font-size:1rem;}
+
+    @media (max-width:480px){
+
+        /* ── Nav ──────────────────────────── */
+        nav{padding:1rem 1rem;}
+        nav>div{display:none!important;}
+        .hamburger{display:flex;}
+        .logo{font-size:.95rem!important;}
+
+        /* ── Global ───────────────────────── */
+        body{overflow-x:hidden;}
+
+        /* ── Footer ───────────────────────── */
+        footer{padding:2rem 1rem;flex-direction:column;align-items:flex-start;gap:1.5rem;}
+        .footer-links{flex-wrap:wrap;gap:.75rem 1.25rem;}
+        .footer-links a{font-size:.72rem;}
+
+        /* ── CTA footer ───────────────────── */
+        .spin-ring{display:none;}
+        .cta-footer-inner{padding:4rem 1rem!important;text-align:center;}
+        .cta-big-text{font-size:clamp(2.2rem,12vw,3.5rem)!important;line-height:1!important;}
+        .cta-sub-text{font-size:.82rem!important;margin:1.25rem auto!important;}
+        .cta-btn-group{flex-direction:column;align-items:stretch;gap:.75rem;margin-top:1.5rem;}
+        .cta-btn-group a,.btn-primary,.btn-ghost{
+            display:block;text-align:center;padding:.9rem 1rem!important;font-size:.85rem!important;}
+
+        /* ── Section eyebrow ──────────────── */
+        .section-eyebrow{font-size:.6rem;}
     }
 
-    @media (max-width: 768px) {
+    @media (max-width:480px){
 
-        /* ── Nav ─────────────────────────── */
-        nav { padding: 1.25rem 1.5rem; }
-        nav > div { display: none; }
-        .hamburger { display: flex; }
+        /* ── Hero ──────────────────────────── */
+        .hero{padding:7rem 1rem 2.5rem!important;text-align:center;}
+        .hero h1{font-size:clamp(2.8rem,13vw,4rem)!important;}
+        .hero p{font-size:.82rem!important;margin-top:1rem!important;}
+        .eyebrow{font-size:.6rem;}
 
-        /* ── Global spacing ──────────────── */
-        .hero, .features-section, .stats-bar, .testimonials-section,
-        .cta-footer-inner, .process-section, .values-section,
-        .overview-section, .panels-header, .services-header { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-        footer { padding: 2rem 1.25rem; }
+        /* ── Method strip: 3+2 ────────────── */
+        .method-strip{
+            display:grid!important;
+            grid-template-columns:repeat(3,1fr)!important;}
+        .method-item{padding:1.25rem .5rem!important;border-right:1px solid rgba(255,255,255,.04);}
+        .method-item:nth-child(3){border-right:none;}
+        .method-item:nth-child(4){border-top:1px solid rgba(255,255,255,.04);}
+        .method-item:nth-child(5){border-top:1px solid rgba(255,255,255,.04);}
+        /* Last 2 items span to center them */
+        .method-item:nth-child(4){grid-column:1/span 2;border-right:1px solid rgba(255,255,255,.04);}
+        .method-item:nth-child(5){grid-column:3/span 1;}
+        .method-icon{font-size:1.1rem;margin-bottom:.5rem;}
+        .method-label{font-size:.58rem;letter-spacing:.1em;}
 
-        /* ── Footer stack ────────────────── */
-        footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-        .footer-links { flex-wrap: wrap; gap: 1rem; }
+        /* ── Panels header ─────────────────── */
+        .panels-header{padding:3rem 1rem 1.5rem!important;flex-direction:column;gap:.75rem;}
+        .panels-header>p{display:none;}
+        .section-title{font-size:clamp(1.8rem,8vw,2.8rem)!important;}
 
-        /* ── CTA footer ──────────────────── */
-        .spin-ring { display: none; }
-        .cta-big-text { font-size: clamp(2.5rem, 14vw, 5rem) !important; }
-        .cta-footer-inner { padding: 5rem 1.25rem !important; }
-        .cta-btn-group { flex-direction: column; align-items: center; }
-        .cta-btn-group a { width: 100%; text-align: center; }
+        /* ── Approach panels ───────────────── */
+        .panel-header-row{padding:1.5rem 1rem!important;flex-wrap:wrap;gap:.5rem;}
+        .approach-panel:hover .panel-header-row{padding:1.75rem 1rem!important;}
+        .panel-left{gap:.75rem;}
+        .panel-title{font-size:clamp(1rem,5vw,1.4rem)!important;}
+        .panel-num{font-size:.56rem;}
+        .panel-right{gap:.5rem;}
+        .panel-tag{font-size:.58rem;letter-spacing:.08em;}
+        .panel-icon{width:32px;height:32px;font-size:.9rem;}
 
-        /* ── Service panels ──────────────── */
-        .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 2rem; }
-        .services-header p { text-align: left !important; max-width: 100% !important; }
-        .service-panel-inner { padding: 1.75rem 1.25rem !important; flex-wrap: wrap; gap: .75rem; }
-        .service-panel:hover .service-panel-inner { padding: 2.25rem 1.25rem !important; }
-        .service-name { font-size: clamp(1.1rem, 5vw, 1.6rem) !important; }
-        .service-num { margin-right: 1rem; }
-        .service-arrow { opacity: 1 !important; transform: translateX(0) !important; }
+        /* ── Drawer: single col ────────────── */
+        .panel-drawer-inner{
+            grid-template-columns:1fr!important;
+            gap:1rem!important;
+            padding:0 1rem 1.75rem!important;}
+        .drawer-desc{font-size:.82rem!important;}
+        .dtag{font-size:.6rem;padding:.25rem .6rem;}
 
-        /* ── Features section ────────────── */
-        .features-section { padding-top: 5rem; padding-bottom: 3rem; }
-        .features-section > div[style*="grid-template-columns:1fr 2fr"] {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-        }
-        .features-section > div > div[style*="border-left"] {
-            border-left: none !important;
-            padding-left: 0 !important;
-            border-top: 1px solid rgba(255,255,255,.06);
-            padding-top: 1.5rem !important;
-        }
-        .features-grid { grid-template-columns: 1fr !important; }
-        .feat-card { padding: 2rem 1.5rem; }
-
-        /* ── Stats bar ───────────────────── */
-        .stats-bar { grid-template-columns: 1fr 1fr !important; padding: 3rem 1.25rem; }
-        .stat-val { font-size: 2.5rem !important; }
-
-        /* ── Testimonials ────────────────── */
-        .testimonials-header { flex-direction: column; gap: 1.5rem; }
-        .testi-card { width: 85vw !important; }
-        .testimonials-section { padding: 4rem 1.25rem; }
-
-        /* ── Hero (homepage) ─────────────── */
-        .hero-headline { font-size: clamp(2.8rem, 13vw, 5rem) !important; }
-        .hero-cta-group { flex-direction: column; align-items: stretch; }
-        .hero-cta-group a { text-align: center; }
-        .hero-sub { font-size: .85rem; }
-
+        /* ── Process: stack vertically ─────── */
+        .process-section{padding:3rem 1rem!important;}
+        .process-section h2{font-size:clamp(1.8rem,8vw,2.5rem)!important;}
+        .process-timeline{grid-template-columns:1fr!important;}
+        .process-timeline::before{display:none;}
+        .process-step{border-right:none!important;
+            border-bottom:1px solid rgba(255,255,255,.05);
+            padding:1.75rem 0!important;}
+        .process-step:last-child{border-bottom:none;}
+        .step-title{font-size:1.05rem!important;}
+        .step-desc{font-size:.8rem!important;}
     }
-
-        @media (max-width: 768px) {
-            .hero { padding: 8rem 1.25rem 3rem; }
-            /* Method strip: 2-3 cols */
-            .method-strip { grid-template-columns: repeat(3, 1fr) !important; }
-            .method-item { padding: 1.25rem .75rem; }
-            .method-label { font-size: .6rem; }
-
-            /* Panels header */
-            .panels-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding-top: 3rem; }
-            .panels-header p { text-align: left !important; max-width: 100% !important; }
-
-            /* Panel rows */
-            .panel-header-row { padding: 1.75rem 1.25rem !important; gap: .75rem; flex-wrap: wrap; }
-            .approach-panel:hover .panel-header-row { padding: 2rem 1.25rem !important; }
-            .panel-left { gap: 1rem; }
-            .panel-right { gap: .75rem; }
-            .panel-tag { font-size: .6rem; }
-            .panel-icon { width: 36px; height: 36px; font-size: .9rem; }
-
-            /* Drawer: single column */
-            .panel-drawer-inner { grid-template-columns: 1fr !important; gap: 1.5rem !important; padding: 0 1.25rem 2rem 1.25rem !important; }
-
-            /* Process timeline: stack */
-            .process-section { padding: 4rem 1.25rem; }
-            .process-timeline { grid-template-columns: 1fr !important; }
-            .process-timeline::before { display: none; }
-            .process-step { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.04); padding: 2rem 0; }
-            .process-step:last-child { border-bottom: none; }
-        }
 
     </style>
 </head>
@@ -334,24 +266,22 @@ if (ham && mNav) {
 <div class="orb orb-2"></div>
 
 <nav>
-    <a href="/mobile/" class="logo">VICINITY</a>
+    <a href="/index.html" class="logo">VICINITY</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div style="display:flex;align-items:center;gap:2rem;">
-        <a href="/mobile/">Home</a>
-        <a href="ourstory.html">Our Story</a>
-        <a href="ourapproach.html" class="nav-active">Our Approach</a>
-        <a href="contact.html" class="nav-cta">Contact Us</a>
+        <a href="/index.html">Home</a>
+        <a href="/mobile/ourstory.html">Our Story</a>
+        <a href="/mobile/ourapproach.html" class="nav-active">Our Approach</a>
+        <a href="/mobile/contact.html" class="nav-cta">Contact Us</a>
     </div>
 </nav>
 
-<!-- Mobile Nav Overlay -->
 <div class="mobile-nav-overlay" id="mobileNav">
-        <a href="/mobile/" class="">Home</a>
-        <a href="ourstory.html" class="">Our Story</a>
-        <a href="ourapproach.html" class="">Our Approach</a>
-        <a href="contact.html" class="mobile-cta">Contact Us</a>
+    <a href="/index.html" >Home</a>
+    <a href="/mobile/ourstory.html" >Our Story</a>
+    <a href="/mobile/ourapproach.html" class="mo-active">Our Approach</a>
+    <a href="/mobile/contact.html" >Contact Us</a>
 </div>
-
 
 <!-- HERO -->
 <section class="hero">
@@ -504,7 +434,7 @@ if (ham && mNav) {
             <span class="line2">GROW TOGETHER?</span>
         </p>
         <p class="cta-sub-text">Three passionate students. Unlimited ideas. Your business, elevated.</p>
-        <a href="contact.html" class="btn-primary">Get In Touch →</a>
+        <a href="/mobile/contact.html" class="btn-primary">Get In Touch →</a>
     </div>
     <div class="spin-ring">
         <svg viewBox="0 0 120 120" width="120" height="120">
@@ -515,12 +445,12 @@ if (ham && mNav) {
 </section>
 
 <footer>
-    <a href="/mobile/" class="logo" style="font-size:.9rem;">VICINITY</a>
+    <a href="/index.html" class="logo" style="font-size:.9rem;">VICINITY</a>
     <div class="footer-links">
-        <a href="/mobile/">Home</a>
-        <a href="ourstory.html">Our Story</a>
-        <a href="ourapproach.html">Our Approach</a>
-        <a href="contact.html">Contact</a>
+        <a href="/index.html">Home</a>
+        <a href="/mobile/ourstory.html">Our Story</a>
+        <a href="/mobile/ourapproach.html">Our Approach</a>
+        <a href="/mobile/contact.html">Contact</a>
     </div>
     
 </footer>
@@ -556,6 +486,20 @@ document.querySelectorAll('.approach-panel').forEach(panel=>{
         }
     });
 });
+
+/* Hamburger */
+const ham=document.getElementById('hamburger'),mNav=document.getElementById('mobileNav');
+if(ham&&mNav){
+    ham.addEventListener('click',()=>{
+        ham.classList.toggle('open');
+        mNav.classList.toggle('open');
+        document.body.style.overflow=mNav.classList.contains('open')?'hidden':'';
+    });
+    mNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+        ham.classList.remove('open');mNav.classList.remove('open');document.body.style.overflow='';
+    }));
+}
+
 </script>
 </body>
 </html>
