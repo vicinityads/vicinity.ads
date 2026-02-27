@@ -14,7 +14,7 @@ export default function middleware(request) {
     const url = new URL(request.url);
 
     if (url.pathname === '/') {
-      url.pathname = '/mobile/mybannerbaby.html';
+      url.pathname = '/mobile/index.html';
     } else {
       url.pathname = '/mobile' + url.pathname;
     }
