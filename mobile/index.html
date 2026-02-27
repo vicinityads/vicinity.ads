@@ -4,26 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vicinity | Full-Service Agency</title>
-    <script src="https://cdn.tailwindcss.com">
-/* ── Hamburger menu ── */
-const ham = document.getElementById('hamburger');
-const mNav = document.getElementById('mobileNav');
-if (ham && mNav) {
-    ham.addEventListener('click', () => {
-        ham.classList.toggle('open');
-        mNav.classList.toggle('open');
-        document.body.style.overflow = mNav.classList.contains('open') ? 'hidden' : '';
-    });
-    mNav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            ham.classList.remove('open');
-            mNav.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    });
-}
-
-</script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root { --cyan:#00f5ff; --pink:#ff2d78; --blue:#3d6bff; --green:#00e5a0; }
@@ -182,149 +163,127 @@ if (ham && mNav) {
         .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
         .reveal.visible{opacity:1;transform:translateY(0);}
     
-    /* ═══════════════════════════════════════
-       MOBILE / TOUCH OPTIMISATION
-       ═══════════════════════════════════════ */
+    /* ══════════════════════════════════════
+       360 × 740 MOBILE OPTIMISATION
+       ══════════════════════════════════════ */
 
-    /* Hide custom cursor on touch screens */
-    @media (hover: none), (pointer: coarse) {
-        #cursor, #cursor-ring { display: none !important; }
-        * { cursor: auto !important; }
+    /* Hide custom cursor on touch */
+    @media (hover:none),(pointer:coarse){
+        #cursor,#cursor-ring{display:none!important;}
+        *{cursor:auto!important;}
     }
 
-    /* ── Hamburger button ─────────────────── */
-    .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        background: none;
-        border: none;
-        padding: .5rem;
-        z-index: 200;
-        cursor: pointer;
-    }
-    .hamburger span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: rgba(255,255,255,.7);
-        border-radius: 2px;
-        transition: transform .3s, opacity .3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* ── Hamburger ───────────────────────── */
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;
+        padding:.5rem;z-index:300;cursor:pointer;flex-shrink:0;}
+    .hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);
+        border-radius:2px;transition:transform .3s,opacity .3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-    /* ── Mobile nav overlay ───────────────── */
-    .mobile-nav-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 150;
-        background: rgba(3,5,8,.97);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2.5rem;
-        opacity: 0;
-        transition: opacity .3s;
-        pointer-events: none;
-    }
-    .mobile-nav-overlay.open {
-        display: flex;
-        opacity: 1;
-        pointer-events: all;
-    }
-    .mobile-nav-overlay a {
-        font-family: 'Syne', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: rgba(255,255,255,.7);
-        text-decoration: none;
-        letter-spacing: .05em;
-        transition: color .3s;
-    }
-    .mobile-nav-overlay a:hover { color: var(--cyan); }
-    .mobile-nav-overlay .mobile-cta {
-        background: var(--blue);
-        color: white !important;
-        padding: .75rem 2rem;
-        border-radius: 6px;
-        font-size: 1rem !important;
+    /* ── Mobile nav overlay ──────────────── */
+    .mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:200;
+        background:rgba(3,5,8,.97);backdrop-filter:blur(20px);
+        flex-direction:column;align-items:center;justify-content:center;
+        gap:2.5rem;opacity:0;transition:opacity .3s;pointer-events:none;}
+    .mobile-nav-overlay.open{display:flex;opacity:1;pointer-events:all;}
+    .mobile-nav-overlay a{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+        color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.04em;transition:color .3s;}
+    .mobile-nav-overlay a:hover,.mobile-nav-overlay .mo-active{color:var(--cyan);}
+    .mobile-nav-overlay a:last-child{background:var(--blue);color:white!important;
+        padding:.7rem 2rem;border-radius:6px;font-size:1rem;}
+
+    @media (max-width:480px){
+
+        /* ── Nav ──────────────────────────── */
+        nav{padding:1rem 1rem;}
+        nav>div{display:none!important;}
+        .hamburger{display:flex;}
+        .logo{font-size:.95rem!important;}
+
+        /* ── Global ───────────────────────── */
+        body{overflow-x:hidden;}
+
+        /* ── Footer ───────────────────────── */
+        footer{padding:2rem 1rem;flex-direction:column;align-items:flex-start;gap:1.5rem;}
+        .footer-links{flex-wrap:wrap;gap:.75rem 1.25rem;}
+        .footer-links a{font-size:.72rem;}
+
+        /* ── CTA footer ───────────────────── */
+        .spin-ring{display:none;}
+        .cta-footer-inner{padding:4rem 1rem!important;text-align:center;}
+        .cta-big-text{font-size:clamp(2.2rem,12vw,3.5rem)!important;line-height:1!important;}
+        .cta-sub-text{font-size:.82rem!important;margin:1.25rem auto!important;}
+        .cta-btn-group{flex-direction:column;align-items:stretch;gap:.75rem;margin-top:1.5rem;}
+        .cta-btn-group a,.btn-primary,.btn-ghost{
+            display:block;text-align:center;padding:.9rem 1rem!important;font-size:.85rem!important;}
+
+        /* ── Section eyebrow ──────────────── */
+        .section-eyebrow{font-size:.6rem;}
     }
 
-    @media (max-width: 768px) {
+    @media (max-width:480px){
 
-        /* ── Nav ─────────────────────────── */
-        nav { padding: 1.25rem 1.5rem; }
-        nav > div { display: none; }
-        .hamburger { display: flex; }
+        /* ── Hero ──────────────────────────── */
+        .hero{padding:7rem 1rem 3rem!important;min-height:auto;}
+        .hero-headline{font-size:clamp(2.4rem,11vw,3.2rem)!important;line-height:1.05!important;}
+        .hero-badge{font-size:.62rem;}
+        .eyebrow{font-size:.6rem;letter-spacing:.3em;}
+        .hero-sub{font-size:.82rem;max-width:100%!important;margin-top:1.25rem;}
+        .hero-cta-group{flex-direction:column;gap:.75rem;margin-top:1.75rem;}
+        .hero-cta-group a{text-align:center;padding:.85rem 1rem!important;font-size:.83rem!important;}
+        .scroll-hint{display:none;}
 
-        /* ── Global spacing ──────────────── */
-        .hero, .features-section, .stats-bar, .testimonials-section,
-        .cta-footer-inner, .process-section, .values-section,
-        .overview-section, .panels-header, .services-header { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-        footer { padding: 2rem 1.25rem; }
+        /* ── Services ──────────────────────── */
+        .services-section{padding:4rem 0 0!important;}
+        .services-header{padding:0 1rem 1.75rem!important;flex-direction:column;gap:.75rem;}
+        .services-header>p{display:none;}
+        .section-title{font-size:clamp(1.8rem,8vw,2.8rem)!important;}
+        .service-panel-inner{padding:1.5rem 1rem!important;flex-direction:column;
+            align-items:flex-start!important;gap:.6rem;}
+        .service-panel:hover .service-panel-inner{padding:1.75rem 1rem!important;}
+        .service-panel-inner>div:first-child{display:flex;align-items:center;}
+        .service-panel-inner>div:last-child{display:flex;align-items:center;gap:1rem;}
+        .service-name{font-size:clamp(1.1rem,5.5vw,1.5rem)!important;}
+        .service-num{margin-right:1rem;font-size:.58rem;}
+        .service-tag{font-size:.62rem;}
+        .service-arrow{opacity:1!important;transform:none!important;}
 
-        /* ── Footer stack ────────────────── */
-        footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-        .footer-links { flex-wrap: wrap; gap: 1rem; }
+        /* ── Features ─────────────────────── */
+        .features-section{padding:4rem 1rem 3rem!important;}
+        .features-section>[style*="grid-template-columns:1fr 2fr"],
+        .features-section>[style*="grid-template-columns: 1fr 2fr"]{
+            display:flex!important;flex-direction:column!important;gap:1.25rem!important;}
+        .features-section>[style*="border-left"]{
+            border-left:none!important;padding-left:0!important;
+            border-top:1px solid rgba(255,255,255,.06);padding-top:1.25rem!important;}
+        .features-grid{
+            display:grid!important;
+            grid-template-columns:1fr 1fr!important;
+            gap:1px!important;
+            margin-top:1.5rem;}
+        .feat-card{padding:1.5rem 1rem!important;}
+        .feat-title{font-size:.95rem!important;}
+        .feat-desc{font-size:.78rem!important;}
+        .feat-icon{font-size:1.2rem;margin-bottom:1.25rem;}
 
-        /* ── CTA footer ──────────────────── */
-        .spin-ring { display: none; }
-        .cta-big-text { font-size: clamp(2.5rem, 14vw, 5rem) !important; }
-        .cta-footer-inner { padding: 5rem 1.25rem !important; }
-        .cta-btn-group { flex-direction: column; align-items: center; }
-        .cta-btn-group a { width: 100%; text-align: center; }
+        /* ── Stats bar ─────────────────────── */
+        .stats-bar{
+            padding:2.5rem 1rem!important;
+            grid-template-columns:1fr 1fr!important;
+            gap:1.5rem!important;}
+        .stat-val{font-size:2.8rem!important;}
+        .stat-label{font-size:.6rem;}
+        .stat-item{padding:1rem;background:rgba(255,255,255,.02);border-radius:8px;}
 
-        /* ── Service panels ──────────────── */
-        .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 2rem; }
-        .services-header p { text-align: left !important; max-width: 100% !important; }
-        .service-panel-inner { padding: 1.75rem 1.25rem !important; flex-wrap: wrap; gap: .75rem; }
-        .service-panel:hover .service-panel-inner { padding: 2.25rem 1.25rem !important; }
-        .service-name { font-size: clamp(1.1rem, 5vw, 1.6rem) !important; }
-        .service-num { margin-right: 1rem; }
-        .service-arrow { opacity: 1 !important; transform: translateX(0) !important; }
-
-        /* ── Features section ────────────── */
-        .features-section { padding-top: 5rem; padding-bottom: 3rem; }
-        .features-section > div[style*="grid-template-columns:1fr 2fr"] {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-        }
-        .features-section > div > div[style*="border-left"] {
-            border-left: none !important;
-            padding-left: 0 !important;
-            border-top: 1px solid rgba(255,255,255,.06);
-            padding-top: 1.5rem !important;
-        }
-        .features-grid { grid-template-columns: 1fr !important; }
-        .feat-card { padding: 2rem 1.5rem; }
-
-        /* ── Stats bar ───────────────────── */
-        .stats-bar { grid-template-columns: 1fr 1fr !important; padding: 3rem 1.25rem; }
-        .stat-val { font-size: 2.5rem !important; }
-
-        /* ── Testimonials ────────────────── */
-        .testimonials-header { flex-direction: column; gap: 1.5rem; }
-        .testi-card { width: 85vw !important; }
-        .testimonials-section { padding: 4rem 1.25rem; }
-
-        /* ── Hero (homepage) ─────────────── */
-        .hero-headline { font-size: clamp(2.8rem, 13vw, 5rem) !important; }
-        .hero-cta-group { flex-direction: column; align-items: stretch; }
-        .hero-cta-group a { text-align: center; }
-        .hero-sub { font-size: .85rem; }
-
+        /* ── Testimonials ──────────────────── */
+        .testimonials-section{padding:3.5rem 1rem!important;}
+        .testimonials-header{flex-direction:column;gap:1rem;margin-bottom:2rem!important;}
+        .testi-card{width:calc(100vw - 2rem)!important;padding:1.75rem 1.25rem!important;}
+        .testi-text{font-size:.82rem!important;}
+        .quote-mark{font-size:3rem!important;}
     }
-
-        @media (max-width: 768px) {
-            /* Testimonials track mobile tweak */
-            .testi-track { gap: 1rem; }
-            .testi-track-wrap { padding: 0; }
-            .testi-dots { margin-top: 1.5rem; }
-        }
 
     </style>
 </head>
@@ -338,24 +297,22 @@ if (ham && mNav) {
 <div class="orb orb-2"></div>
 
 <nav>
-    <a href="mybannerbaby.html" class="logo">VICINITY</a>
+    <a href="/index.html" class="logo">VICINITY</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div style="display:flex;align-items:center;gap:2rem;">
-        <a href="mybannerbaby.html">Home</a>
-        <a href="ourstory.html">Our Story</a>
-        <a href="ourapproach.html">Our Approach</a>
-        <a href="contact.html" class="nav-cta">Contact Us</a>
+        <a href="/index.html">Home</a>
+        <a href="/mobile/ourstory.html">Our Story</a>
+        <a href="/mobile/ourapproach.html">Our Approach</a>
+        <a href="/mobile/contact.html" class="nav-cta">Contact Us</a>
     </div>
 </nav>
 
-<!-- Mobile Nav Overlay -->
 <div class="mobile-nav-overlay" id="mobileNav">
-        <a href="mybannerbaby.html" class="">Home</a>
-        <a href="ourstory.html" class="">Our Story</a>
-        <a href="ourapproach.html" class="">Our Approach</a>
-        <a href="contact.html" class="mobile-cta">Contact Us</a>
+    <a href="/index.html" class="mo-active">Home</a>
+    <a href="/mobile/ourstory.html" >Our Story</a>
+    <a href="/mobile/ourapproach.html" >Our Approach</a>
+    <a href="/mobile/contact.html" >Contact Us</a>
 </div>
-
 
 <section class="hero">
     <div class="hero-badge"><span class="pulse"></span> Now accepting new clients</div>
@@ -366,8 +323,8 @@ if (ham && mNav) {
     </h1>
     <p class="hero-sub">Vicinity Ads is a Bangalore-based agency run by a close-knit team of three teenage students. Digital natives who understand how today's audiences think, scroll, and decide.</p>
     <div class="hero-cta-group">
-        <a href="ourstory.html" class="btn-primary">Discover Our Story →</a>
-        <a href="ourapproach.html" class="btn-ghost">Our Approach</a>
+        <a href="/mobile/ourstory.html" class="btn-primary">Discover Our Story →</a>
+        <a href="/mobile/ourapproach.html" class="btn-ghost">Our Approach</a>
     </div>
 
 </section>
@@ -394,7 +351,7 @@ if (ham && mNav) {
         <p style="color:rgba(255,255,255,.3);font-size:.85rem;max-width:260px;line-height:1.7;text-align:right;">Hover each service — then click to learn more.</p>
     </div>
     <div class="services-list">
-        <div class="service-panel reveal" onclick="location.href='ourapproach.html'">
+        <div class="service-panel reveal" onclick="location.href='/mobile/ourapproach.html'">
             <div class="service-bg" style="background-image:url('https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=1600&q=80')"></div>
             <div class="service-panel-inner">
                 <div style="display:flex;align-items:center;"><span class="service-num">01</span><span class="service-name">Digital Advertising</span></div>
@@ -402,7 +359,7 @@ if (ham && mNav) {
     <div style="display:flex;align-items:center;gap:2rem;"><span class="service-tag">Ads · Targeting · ROI</span><span class="service-arrow">→</span></div>
             </div>
         </div>
-        <div class="service-panel reveal" onclick="location.href='ourapproach.html'">
+        <div class="service-panel reveal" onclick="location.href='/mobile/ourapproach.html'">
             <div class="service-bg" style="background-image:url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1600&q=80')"></div>
             <div class="service-panel-inner">
                 <div style="display:flex;align-items:center;"><span class="service-num">02</span><span class="service-name">Social Media Management</span></div>
@@ -410,7 +367,7 @@ if (ham && mNav) {
     <div style="display:flex;align-items:center;gap:2rem;"><span class="service-tag">Instagram · LinkedIn · Reels</span><span class="service-arrow">→</span></div>
             </div>
         </div>
-        <div class="service-panel reveal" onclick="location.href='ourapproach.html'">
+        <div class="service-panel reveal" onclick="location.href='/mobile/ourapproach.html'">
             <div class="service-bg" style="background-image:url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1600&q=80')"></div>
             <div class="service-panel-inner">
                 <div style="display:flex;align-items:center;"><span class="service-num">03</span><span class="service-name">Website & Copywriting</span></div>
@@ -459,8 +416,8 @@ if (ham && mNav) {
         </p>
         <p class="cta-sub-text">It's time to stop blending in. Let's build something that makes your audience stop scrolling.</p>
         <div class="cta-btn-group">
-            <a href="contact.html" class="btn-primary" style="padding:1rem 2.5rem;font-size:.9rem;">Start Today →</a>
-            <a href="ourstory.html" class="btn-ghost" style="padding:1rem 2.5rem;font-size:.9rem;">Meet The Team</a>
+            <a href="/mobile/contact.html" class="btn-primary" style="padding:1rem 2.5rem;font-size:.9rem;">Start Today →</a>
+            <a href="/mobile/ourstory.html" class="btn-ghost" style="padding:1rem 2.5rem;font-size:.9rem;">Meet The Team</a>
         </div>
     </div>
     <div class="spin-ring">
@@ -472,12 +429,12 @@ if (ham && mNav) {
 </section>
 
 <footer>
-    <a href="mybannerbaby.html" class="logo" style="font-size:.9rem;">VICINITY</a>
+    <a href="/index.html" class="logo" style="font-size:.9rem;">VICINITY</a>
     <div class="footer-links">
-        <a href="mybannerbaby.html">Home</a>
-        <a href="ourstory.html">Our Story</a>
-        <a href="ourapproach.html">Our Approach</a>
-        <a href="contact.html">Contact</a>
+        <a href="/index.html">Home</a>
+        <a href="/mobile/ourstory.html">Our Story</a>
+        <a href="/mobile/ourapproach.html">Our Approach</a>
+        <a href="/mobile/contact.html">Contact</a>
     </div>
     
 </footer>
@@ -578,6 +535,20 @@ if(statsBar)statsObs.observe(statsBar);
 /* Scroll reveal */
 const rObs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
+
+/* Hamburger */
+const ham=document.getElementById('hamburger'),mNav=document.getElementById('mobileNav');
+if(ham&&mNav){
+    ham.addEventListener('click',()=>{
+        ham.classList.toggle('open');
+        mNav.classList.toggle('open');
+        document.body.style.overflow=mNav.classList.contains('open')?'hidden':'';
+    });
+    mNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+        ham.classList.remove('open');mNav.classList.remove('open');document.body.style.overflow='';
+    }));
+}
+
 </script>
 </body>
 </html>
