@@ -127,11 +127,24 @@
         .spin-ring svg text{font-size:8px;fill:rgba(255,255,255,.3);font-family:'DM Sans',sans-serif;letter-spacing:3px;}
         @keyframes spinRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-        footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.04);padding:3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-        .footer-copy{font-size:.75rem;color:rgba(255,255,255,.2);}
-        .footer-links{display:flex;gap:2rem;}
+        footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.06);padding:3.5rem 3rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;}
+        .footer-logo-col{display:flex;flex-direction:column;gap:.6rem;}
+        .footer-copy{font-size:.72rem;color:rgba(255,255,255,.18);letter-spacing:.08em;margin-top:.25rem;}
+        .footer-links{display:flex;gap:2rem;justify-content:center;}
         .footer-links a{font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s;}
         .footer-links a:hover{color:var(--cyan);}
+        .footer-social{display:flex;align-items:center;justify-content:flex-end;gap:1.25rem;}
+        .footer-icon-link{display:flex;align-items:center;gap:.65rem;text-decoration:none;transition:opacity .3s;}
+        .footer-icon-link:hover{opacity:.7;}
+        .footer-icon{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.12);
+            display:flex;align-items:center;justify-content:center;flex-shrink:0;
+            transition:border-color .3s,background .3s,box-shadow .3s;}
+        .footer-icon:hover{border-color:var(--cyan);background:rgba(0,245,255,.07);box-shadow:0 0 16px rgba(0,245,255,.2);}
+        .footer-icon svg{width:18px;height:18px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.6;
+            stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s;}
+        .footer-icon-link:hover .footer-icon svg{stroke:var(--cyan);}
+        .footer-email-text{font-size:.75rem;color:rgba(255,255,255,.3);letter-spacing:.04em;transition:color .3s;}
+        .footer-icon-link:hover .footer-email-text{color:var(--cyan);}
 
         .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
         .reveal.visible{opacity:1;transform:translateY(0);}
@@ -147,9 +160,9 @@
 <div class="orb orb-2"></div>
 
 <nav>
-    <a href="/" class="logo">VICINITY</a>
+    <a href="mybannerbaby.html" class="logo">VICINITY</a>
     <div style="display:flex;align-items:center;gap:2rem;">
-        <a href="/">Home</a>
+        <a href="mybannerbaby.html">Home</a>
         <a href="ourstory.html">Our Story</a>
         <a href="ourapproach.html" class="nav-active">Our Approach</a>
         <a href="contact.html" class="nav-cta">Contact Us</a>
@@ -318,14 +331,32 @@
 </section>
 
 <footer>
-    <a href="/" class="logo" style="font-size:.9rem;">VICINITY</a>
+    <div class="footer-logo-col">
+        <a href="index.html" class="logo" style="font-size:.9rem;">VICINITY</a>
+        
+    </div>
     <div class="footer-links">
-        <a href="/">Home</a>
+        <a href="index.html">Home</a>
         <a href="ourstory.html">Our Story</a>
         <a href="ourapproach.html">Our Approach</a>
         <a href="contact.html">Contact</a>
     </div>
-    
+    <div class="footer-social">
+        <a href="https://www.instagram.com/vicinityads/" target="_blank" rel="noopener" class="footer-icon-link">
+            <div class="footer-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <circle cx="12" cy="12" r="4.5"/>
+  <circle cx="17.5" cy="6.5" r="1" fill="rgba(255,255,255,.5)" stroke="none"/>
+</svg></div>
+        </a>
+        <a href="mailto:adsvicinity@gmail.com" class="footer-icon-link">
+            <div class="footer-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="4" width="20" height="16" rx="3"/>
+  <polyline points="2,4 12,13 22,4"/>
+</svg></div>
+            <span class="footer-email-text">adsvicinity@gmail.com</span>
+        </a>
+    </div>
 </footer>
 
 <script>
