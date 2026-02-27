@@ -4,26 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Story | Vicinity</title>
-    <script src="https://cdn.tailwindcss.com">
-/* ── Hamburger menu ── */
-const ham = document.getElementById('hamburger');
-const mNav = document.getElementById('mobileNav');
-if (ham && mNav) {
-    ham.addEventListener('click', () => {
-        ham.classList.toggle('open');
-        mNav.classList.toggle('open');
-        document.body.style.overflow = mNav.classList.contains('open') ? 'hidden' : '';
-    });
-    mNav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            ham.classList.remove('open');
-            mNav.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    });
-}
-
-</script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root{--cyan:#00f5ff;--pink:#ff2d78;--blue:#3d6bff;--green:#00e5a0;}
@@ -147,181 +128,118 @@ if (ham && mNav) {
         .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
         .reveal.visible{opacity:1;transform:translateY(0);}
     
-    /* ═══════════════════════════════════════
-       MOBILE / TOUCH OPTIMISATION
-       ═══════════════════════════════════════ */
+    /* ══════════════════════════════════════
+       360 × 740 MOBILE OPTIMISATION
+       ══════════════════════════════════════ */
 
-    /* Hide custom cursor on touch screens */
-    @media (hover: none), (pointer: coarse) {
-        #cursor, #cursor-ring { display: none !important; }
-        * { cursor: auto !important; }
+    /* Hide custom cursor on touch */
+    @media (hover:none),(pointer:coarse){
+        #cursor,#cursor-ring{display:none!important;}
+        *{cursor:auto!important;}
     }
 
-    /* ── Hamburger button ─────────────────── */
-    .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        background: none;
-        border: none;
-        padding: .5rem;
-        z-index: 200;
-        cursor: pointer;
-    }
-    .hamburger span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: rgba(255,255,255,.7);
-        border-radius: 2px;
-        transition: transform .3s, opacity .3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* ── Hamburger ───────────────────────── */
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;
+        padding:.5rem;z-index:300;cursor:pointer;flex-shrink:0;}
+    .hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);
+        border-radius:2px;transition:transform .3s,opacity .3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-    /* ── Mobile nav overlay ───────────────── */
-    .mobile-nav-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 150;
-        background: rgba(3,5,8,.97);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2.5rem;
-        opacity: 0;
-        transition: opacity .3s;
-        pointer-events: none;
-    }
-    .mobile-nav-overlay.open {
-        display: flex;
-        opacity: 1;
-        pointer-events: all;
-    }
-    .mobile-nav-overlay a {
-        font-family: 'Syne', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: rgba(255,255,255,.7);
-        text-decoration: none;
-        letter-spacing: .05em;
-        transition: color .3s;
-    }
-    .mobile-nav-overlay a:hover { color: var(--cyan); }
-    .mobile-nav-overlay .mobile-cta {
-        background: var(--blue);
-        color: white !important;
-        padding: .75rem 2rem;
-        border-radius: 6px;
-        font-size: 1rem !important;
+    /* ── Mobile nav overlay ──────────────── */
+    .mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:200;
+        background:rgba(3,5,8,.97);backdrop-filter:blur(20px);
+        flex-direction:column;align-items:center;justify-content:center;
+        gap:2.5rem;opacity:0;transition:opacity .3s;pointer-events:none;}
+    .mobile-nav-overlay.open{display:flex;opacity:1;pointer-events:all;}
+    .mobile-nav-overlay a{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+        color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.04em;transition:color .3s;}
+    .mobile-nav-overlay a:hover,.mobile-nav-overlay .mo-active{color:var(--cyan);}
+    .mobile-nav-overlay a:last-child{background:var(--blue);color:white!important;
+        padding:.7rem 2rem;border-radius:6px;font-size:1rem;}
+
+    @media (max-width:480px){
+
+        /* ── Nav ──────────────────────────── */
+        nav{padding:1rem 1rem;}
+        nav>div{display:none!important;}
+        .hamburger{display:flex;}
+        .logo{font-size:.95rem!important;}
+
+        /* ── Global ───────────────────────── */
+        body{overflow-x:hidden;}
+
+        /* ── Footer ───────────────────────── */
+        footer{padding:2rem 1rem;flex-direction:column;align-items:flex-start;gap:1.5rem;}
+        .footer-links{flex-wrap:wrap;gap:.75rem 1.25rem;}
+        .footer-links a{font-size:.72rem;}
+
+        /* ── CTA footer ───────────────────── */
+        .spin-ring{display:none;}
+        .cta-footer-inner{padding:4rem 1rem!important;text-align:center;}
+        .cta-big-text{font-size:clamp(2.2rem,12vw,3.5rem)!important;line-height:1!important;}
+        .cta-sub-text{font-size:.82rem!important;margin:1.25rem auto!important;}
+        .cta-btn-group{flex-direction:column;align-items:stretch;gap:.75rem;margin-top:1.5rem;}
+        .cta-btn-group a,.btn-primary,.btn-ghost{
+            display:block;text-align:center;padding:.9rem 1rem!important;font-size:.85rem!important;}
+
+        /* ── Section eyebrow ──────────────── */
+        .section-eyebrow{font-size:.6rem;}
     }
 
-    @media (max-width: 768px) {
+    @media (max-width:480px){
 
-        /* ── Nav ─────────────────────────── */
-        nav { padding: 1.25rem 1.5rem; }
-        nav > div { display: none; }
-        .hamburger { display: flex; }
+        /* ── Hero: full stack ──────────────── */
+        .hero{
+            display:flex!important;flex-direction:column!important;
+            min-height:auto!important;
+            padding:7rem 1rem 3rem!important;
+            gap:2rem!important;}
+        .hero h1{font-size:clamp(2.6rem,12vw,3.5rem)!important;line-height:.95!important;}
+        .eyebrow{font-size:.6rem;letter-spacing:.3em;}
+        .body-text{font-size:.82rem!important;margin-top:1.25rem!important;}
+        .body-text p+p{margin-top:1rem;}
 
-        /* ── Global spacing ──────────────── */
-        .hero, .features-section, .stats-bar, .testimonials-section,
-        .cta-footer-inner, .process-section, .values-section,
-        .overview-section, .panels-header, .services-header { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-        footer { padding: 2rem 1.25rem; }
+        /* ── Stats row: wrap ───────────────── */
+        .stats-row{gap:1.5rem;flex-wrap:wrap;margin-top:2rem;padding-top:1.5rem;}
+        .stat-val{font-size:2rem!important;}
+        .stat-sub{font-size:.58rem;}
 
-        /* ── Footer stack ────────────────── */
-        footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-        .footer-links { flex-wrap: wrap; gap: 1rem; }
+        /* ── Collage: compact ──────────────── */
+        .collage{height:220px!important;position:relative;overflow:hidden;}
+        .card-a{width:140px!important;height:185px!important;top:10px!important;right:10px!important;}
+        .card-b{width:130px!important;height:175px!important;top:30px!important;right:110px!important;}
+        .float-tag,.circle-badge{display:none!important;}
 
-        /* ── CTA footer ──────────────────── */
-        .spin-ring { display: none; }
-        .cta-big-text { font-size: clamp(2.5rem, 14vw, 5rem) !important; }
-        .cta-footer-inner { padding: 5rem 1.25rem !important; }
-        .cta-btn-group { flex-direction: column; align-items: center; }
-        .cta-btn-group a { width: 100%; text-align: center; }
+        /* ── Kinetic text ──────────────────── */
+        .kinetic-section{padding:2.5rem 0!important;}
+        .kinetic-text{font-size:clamp(2.5rem,13vw,4.5rem)!important;}
 
-        /* ── Service panels ──────────────── */
-        .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 2rem; }
-        .services-header p { text-align: left !important; max-width: 100% !important; }
-        .service-panel-inner { padding: 1.75rem 1.25rem !important; flex-wrap: wrap; gap: .75rem; }
-        .service-panel:hover .service-panel-inner { padding: 2.25rem 1.25rem !important; }
-        .service-name { font-size: clamp(1.1rem, 5vw, 1.6rem) !important; }
-        .service-num { margin-right: 1rem; }
-        .service-arrow { opacity: 1 !important; transform: translateX(0) !important; }
+        /* ── Overview: 2×2 ────────────────── */
+        .overview-section{
+            display:grid!important;
+            grid-template-columns:1fr 1fr!important;
+            padding:2.5rem 1rem!important;
+            gap:1px!important;
+            background:rgba(255,255,255,.04)!important;}
+        .ov-item{
+            background:#030508;
+            padding:1.75rem 1rem!important;
+            text-align:center;}
+        .ov-item::after{display:none!important;}
+        .ov-val{font-size:clamp(2rem,9vw,3rem)!important;}
+        .ov-label{font-size:.58rem;letter-spacing:.2em;}
+        .ov-desc{font-size:.72rem!important;display:none;}
 
-        /* ── Features section ────────────── */
-        .features-section { padding-top: 5rem; padding-bottom: 3rem; }
-        .features-section > div[style*="grid-template-columns:1fr 2fr"] {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-        }
-        .features-section > div > div[style*="border-left"] {
-            border-left: none !important;
-            padding-left: 0 !important;
-            border-top: 1px solid rgba(255,255,255,.06);
-            padding-top: 1.5rem !important;
-        }
-        .features-grid { grid-template-columns: 1fr !important; }
-        .feat-card { padding: 2rem 1.5rem; }
-
-        /* ── Stats bar ───────────────────── */
-        .stats-bar { grid-template-columns: 1fr 1fr !important; padding: 3rem 1.25rem; }
-        .stat-val { font-size: 2.5rem !important; }
-
-        /* ── Testimonials ────────────────── */
-        .testimonials-header { flex-direction: column; gap: 1.5rem; }
-        .testi-card { width: 85vw !important; }
-        .testimonials-section { padding: 4rem 1.25rem; }
-
-        /* ── Hero (homepage) ─────────────── */
-        .hero-headline { font-size: clamp(2.8rem, 13vw, 5rem) !important; }
-        .hero-cta-group { flex-direction: column; align-items: stretch; }
-        .hero-cta-group a { text-align: center; }
-        .hero-sub { font-size: .85rem; }
-
+        /* ── Values: single col ────────────── */
+        .values-section{padding:3rem 1rem!important;}
+        .values-section h2{font-size:clamp(1.8rem,8vw,2.5rem)!important;}
+        .values-grid{grid-template-columns:1fr!important;}
+        .value-item{padding:1.75rem 1.25rem!important;}
+        .value-title{font-size:1rem!important;}
+        .value-desc{font-size:.8rem!important;}
     }
-
-        @media (max-width: 768px) {
-            /* Hero: stack grid */
-            .hero {
-                grid-template-columns: 1fr !important;
-                min-height: auto !important;
-                padding: 8rem 1.25rem 3rem !important;
-                gap: 3rem !important;
-            }
-            h1 { font-size: clamp(2.8rem, 13vw, 4rem) !important; }
-
-            /* Collage: simplified, remove absolute madness */
-            .collage { height: 300px !important; overflow: hidden; }
-            .card-a { width: 160px !important; height: 210px !important; top: 10px !important; right: 20px !important; }
-            .card-b { width: 150px !important; height: 200px !important; top: 80px !important; right: 130px !important; }
-            .float-tag, .circle-badge { display: none; }
-
-            /* Stats row */
-            .stats-row { gap: 1.5rem; flex-wrap: wrap; }
-            .stat-val { font-size: 1.8rem !important; }
-
-            /* Kinetic text */
-            .kinetic-section { padding: 3rem 0; }
-            .kinetic-text { font-size: clamp(3rem, 14vw, 6rem) !important; }
-
-            /* Values grid */
-            .values-section { padding: 4rem 1.25rem; }
-            .values-grid { grid-template-columns: 1fr !important; }
-            .value-item { padding: 2rem 1.5rem; }
-
-            /* Overview stats */
-            .overview-section {
-                grid-template-columns: 1fr 1fr !important;
-                padding: 3rem 1.25rem !important;
-                gap: 1rem !important;
-            }
-            .ov-item::after { display: none; }
-            .ov-val { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
-        }
 
     </style>
 </head>
@@ -335,24 +253,22 @@ if (ham && mNav) {
 <div class="orb orb-2"></div>
 
 <nav>
-    <a href="/mobile/" class="logo">VICINITY</a>
+    <a href="/index.html" class="logo">VICINITY</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div style="display:flex;align-items:center;gap:2rem;">
-        <a href="/mobile/">Home</a>
-        <a href="ourstory.html" class="nav-active">Our Story</a>
-        <a href="ourapproach.html">Our Approach</a>
-        <a href="contact.html" class="nav-cta">Contact Us</a>
+        <a href="/index.html">Home</a>
+        <a href="/mobile/ourstory.html" class="nav-active">Our Story</a>
+        <a href="/mobile/ourapproach.html">Our Approach</a>
+        <a href="/mobile/contact.html" class="nav-cta">Contact Us</a>
     </div>
 </nav>
 
-<!-- Mobile Nav Overlay -->
 <div class="mobile-nav-overlay" id="mobileNav">
-        <a href="/mobile/" class="">Home</a>
-        <a href="ourstory.html" class="">Our Story</a>
-        <a href="ourapproach.html" class="">Our Approach</a>
-        <a href="contact.html" class="mobile-cta">Contact Us</a>
+    <a href="/index.html" >Home</a>
+    <a href="/mobile/ourstory.html" class="mo-active">Our Story</a>
+    <a href="/mobile/ourapproach.html" >Our Approach</a>
+    <a href="/mobile/contact.html" >Contact Us</a>
 </div>
-
 
 <!-- HERO -->
 <main class="hero">
@@ -449,17 +365,17 @@ if (ham && mNav) {
             <span class="line2">LET'S TALK.</span>
         </p>
         <p class="cta-sub-text">Three students. Unlimited drive. Your brand's next chapter starts here.</p>
-        <a href="contact.html" class="btn-primary">Get In Touch →</a>
+        <a href="/mobile/contact.html" class="btn-primary">Get In Touch →</a>
     </div>
 </section>
 
 <footer>
-    <a href="/mobile/" class="logo" style="font-size:.9rem;">VICINITY</a>
+    <a href="/index.html" class="logo" style="font-size:.9rem;">VICINITY</a>
     <div class="footer-links">
-        <a href="/mobile/">Home</a>
-        <a href="ourstory.html">Our Story</a>
-        <a href="ourapproach.html">Our Approach</a>
-        <a href="contact.html">Contact</a>
+        <a href="/index.html">Home</a>
+        <a href="/mobile/ourstory.html">Our Story</a>
+        <a href="/mobile/ourapproach.html">Our Approach</a>
+        <a href="/mobile/contact.html">Contact</a>
     </div>
     
 </footer>
@@ -571,6 +487,20 @@ if(collage&&cardA&&cardB){
         setTimeout(()=>{cardA.style.transition='';cardB.style.transition='';},800);
     });
 }
+
+/* Hamburger */
+const ham=document.getElementById('hamburger'),mNav=document.getElementById('mobileNav');
+if(ham&&mNav){
+    ham.addEventListener('click',()=>{
+        ham.classList.toggle('open');
+        mNav.classList.toggle('open');
+        document.body.style.overflow=mNav.classList.contains('open')?'hidden':'';
+    });
+    mNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+        ham.classList.remove('open');mNav.classList.remove('open');document.body.style.overflow='';
+    }));
+}
+
 </script>
 </body>
 </html>
