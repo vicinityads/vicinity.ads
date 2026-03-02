@@ -434,5 +434,6 @@ if(statsBar)statsObs.observe(statsBar);
 const rObs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
 </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
